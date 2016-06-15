@@ -13,13 +13,13 @@ if __name__ == '__main__':
 
     corpus = Corpus.from_env()
 
-    i = 0
-    c = 0
+    v = 0
+    t = 0
 
     @atexit.register
     def log():
-        print(i, c)
+        print(v, t)
 
     for vol in corpus.volumes():
-        c += vol.token_count()
-        i += 1
+        t += vol.token_count()
+        v += 1
