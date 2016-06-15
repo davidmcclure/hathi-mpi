@@ -35,7 +35,6 @@ class Volume:
         self.data = data
 
 
-    @property
     def id(self):
 
         """
@@ -45,3 +44,17 @@ class Volume:
         """
 
         return self.data['id']
+
+
+    def token_count(self):
+
+        """
+        Get the total token count on all pages.
+
+        Returns: int
+        """
+
+        return sum([
+            page['tokenCount']
+            for page in self.data['features']['pages']
+        ])
