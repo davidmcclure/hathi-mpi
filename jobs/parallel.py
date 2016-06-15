@@ -8,17 +8,27 @@ from hathi_mpi.corpus import Corpus
 from hathi_mpi.volume import Volume
 
 
-if __name__ == '__main__':
+def count_tokens(path):
 
     """
-    Loop through volmes one-by-one.
+    Count tokens in a volume.
+
+    Args:
+        path (str)
+    """
+
+    vol = Volume.from_path(path)
+
+    return vol.token_count()
+
+
+def parallel():
+
+    """
+    Parallelize across N cores.
     """
 
     corpus = Corpus.from_env()
-
-    def worker(path):
-        vol = Volume.from_path(path)
-        return vol.token_count()
 
     v = 0
     t = 0
@@ -29,8 +39,15 @@ if __name__ == '__main__':
 
     with Pool() as pool:
 
-        jobs = pool.imap_unordered(worker, corpus.paths())
+        jobs = pool.imap_unordered(
+            count_tokens,
+            corpus.paths(),
+        )
 
         for count in jobs:
             t += count
             v += 1
+
+
+if __name__ == '__main__':
+    parallel()

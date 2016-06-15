@@ -5,7 +5,7 @@ import atexit
 from hathi_mpi.corpus import Corpus
 
 
-if __name__ == '__main__':
+def serial():
 
     """
     Loop through volmes one-by-one.
@@ -23,3 +23,7 @@ if __name__ == '__main__':
     for vol in corpus.volumes():
         t += vol.token_count()
         v += 1
+
+
+if __name__ == '__main__':
+    serial()
