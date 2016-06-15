@@ -1,0 +1,5 @@
+---
+
+corpus_dir: /path/to/corpus
+
+group_size: 1000

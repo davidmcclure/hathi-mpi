@@ -3,3 +3,5 @@ ipython
 ipyparallel
 mpi4py
 scandir
+anyconfig
+PyYAML

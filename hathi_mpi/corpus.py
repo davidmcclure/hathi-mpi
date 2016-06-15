@@ -4,9 +4,22 @@ import scandir
 import os
 
 from hathi_mpi.volume import Volume
+from hathi_mpi import config
 
 
 class Corpus:
+
+
+    @classmethod
+    def from_env(cls):
+
+        """
+        Wrap the ENV-defined corpus root.
+
+        Returns: cls
+        """
+
+        return cls(config['corpus_dir'])
 
 
     def __init__(self, path):
