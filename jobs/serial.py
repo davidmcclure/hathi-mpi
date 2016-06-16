@@ -20,7 +20,7 @@ def serial():
     def log():
         print(v, t)
 
-    for vol in corpus.volumes():
+    for vol in corpus.bz2_volumes():
         t += vol.token_count()
         v += 1
 

@@ -17,7 +17,7 @@ def count_tokens(path):
         path (str)
     """
 
-    vol = Volume.from_path(path)
+    vol = Volume.from_bz2_path(path)
 
     return vol.token_count()
 
@@ -41,7 +41,7 @@ def parallel():
 
         jobs = pool.imap_unordered(
             count_tokens,
-            corpus.paths(),
+            corpus.paths('.bz2'),
         )
 
         for count in jobs:

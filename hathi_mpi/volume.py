@@ -8,10 +8,10 @@ class Volume:
 
 
     @classmethod
-    def from_path(cls, path):
+    def from_bz2_path(cls, path):
 
         """
-        Inflate a volume and make an instance.
+        Inflate a .bz2 volume and make an instance.
 
         Args:
             path (str)
@@ -20,6 +20,22 @@ class Volume:
         """
 
         with bz2.open(path, 'rt') as fh:
+            return cls(json.loads(fh.read()))
+
+
+    @classmethod
+    def from_json_path(cls, path):
+
+        """
+        Inflate a .json volume and make an instance.
+
+        Args:
+            path (str)
+
+        Returns: cls
+        """
+
+        with open(path, 'r') as fh:
             return cls(json.loads(fh.read()))
 
 
