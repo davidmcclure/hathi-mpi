@@ -48,6 +48,8 @@ class Corpus:
 
         for root, dirs, files in scandir.walk(self.path):
             for name in files:
+
+                # Filter extensions.
                 if os.path.splitext(name)[1] == ext:
                     yield os.path.join(root, name)
 
