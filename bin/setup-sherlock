@@ -1,0 +1,7 @@
+#!/bin/sh
+
+module load python/3.3.2
+
+virtualenv --python=/opt/rh/python33/root/usr/bin/python env
+
+pip install -r requirements.txt
