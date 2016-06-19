@@ -23,6 +23,8 @@ def loops():
     size = comm.Get_size()
     rank = comm.Get_rank()
 
+    status = MPI.Status()
+
     if rank == 0:
 
         corpus = Corpus.from_env()
@@ -103,9 +105,6 @@ def loops():
 
                     except Exception as e:
                         print(e)
-
-                comm.send(None, dest=0, tag=Tags.RESULT)
-                print(rank, 'result')
 
             # ----
             # EXIT
