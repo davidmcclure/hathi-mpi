@@ -4,8 +4,9 @@ import scandir
 import os
 import json
 
-from hathi_mpi.volume import Volume
 from hathi_mpi import config
+from hathi_mpi.volume import Volume
+from hathi_mpi.utils import grouper
 
 
 class Corpus:
@@ -52,6 +53,22 @@ class Corpus:
                 # Filter extensions.
                 if os.path.splitext(name)[1] == ext:
                     yield os.path.join(root, name)
+
+
+    def path_groups(self, ext, n=1000):
+
+        """
+        Generate groups of paths.
+
+        Args:
+            ext (str)
+            n (int)
+
+        Yields: list
+        """
+
+        for group in grouper(self.paths(ext), n):
+            yield group
 
 
     def bz2_volumes(self):
