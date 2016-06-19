@@ -2,6 +2,7 @@
 ipython
 ipyparallel
 mpi4py
+numpy
 scandir
 anyconfig
 PyYAML
