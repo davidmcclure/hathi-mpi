@@ -3,6 +3,7 @@
 import atexit
 
 from hathi_mpi.corpus import Corpus
+from hathi_mpi.volume import Volume
 
 
 def serial():
@@ -20,9 +21,16 @@ def serial():
     def log():
         print(v, t)
 
-    for vol in corpus.bz2_volumes():
-        t += vol.token_count()
-        v += 1
+    for path in corpus.paths('.bz2'):
+
+        try:
+
+            vol = Volume.from_bz2_path(path)
+            t += vol.token_count()
+            v += 1
+
+        except Exception as e:
+            print(e)
 
 
 if __name__ == '__main__':
