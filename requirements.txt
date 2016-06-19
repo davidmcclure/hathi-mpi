@@ -6,3 +6,4 @@ numpy
 scandir
 anyconfig
 PyYAML
+click

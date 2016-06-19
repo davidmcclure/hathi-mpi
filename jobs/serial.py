@@ -1,12 +1,16 @@
 
 
-import atexit
+import click
+
+from datetime import datetime as dt
 
 from hathi_mpi.corpus import Corpus
 from hathi_mpi.volume import Volume
 
 
-def serial():
+@click.command()
+@click.argument('seconds', default=3600)
+def serial(seconds):
 
     """
     Loop through volmes one-by-one.
@@ -17,9 +21,7 @@ def serial():
     v = 0
     t = 0
 
-    @atexit.register
-    def log():
-        print(v, t)
+    t1 = dt.now()
 
     for path in corpus.paths('.bz2'):
 
@@ -31,6 +33,10 @@ def serial():
 
         except Exception as e:
             print(e)
+
+        if (dt.now()-t1).total_seconds() > seconds:
+            print(v, t)
+            break
 
 
 if __name__ == '__main__':
