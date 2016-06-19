@@ -19,7 +19,7 @@ def scatter():
     size = comm.Get_size()
     rank = comm.Get_rank()
 
-    # Make path segments.
+    # Split paths into segments.
 
     if rank == 0:
 
