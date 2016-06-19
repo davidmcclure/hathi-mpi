@@ -17,9 +17,13 @@ def count_tokens(path):
         path (str)
     """
 
-    vol = Volume.from_bz2_path(path)
+    try:
 
-    return vol.token_count()
+        vol = Volume.from_bz2_path(path)
+        return vol.token_count()
+
+    except Exception as e:
+        print(e)
 
 
 def parallel():
@@ -45,7 +49,7 @@ def parallel():
         )
 
         for count in jobs:
-            t += count
+            if count: t += count
             v += 1
 
 
