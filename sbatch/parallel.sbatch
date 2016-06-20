@@ -36,4 +36,4 @@ module load python/3.3.2
 
 export PYTHONPATH=/home/dclure/hathi-mpi
 
-$PYTHONPATH/env/bin/python $PYTHONPATH/jobs/parallel.py 60
+$PYTHONPATH/env/bin/python $PYTHONPATH/jobs/parallel.py 3600
