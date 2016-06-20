@@ -27,7 +27,7 @@
 #################
 #tasks to run per node; a "task" is usually mapped to a MPI processes.
 # for local parallelism (OpenMP or threads), use "--ntasks-per-node=1 --cpus-per-task=16" instead
-#SBATCH --ntasks-per-node=16
+#SBATCH --ntasks-per-node=1
 #################
 
 module load openmpi/1.10.2/gcc
