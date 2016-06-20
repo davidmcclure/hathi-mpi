@@ -34,6 +34,7 @@ def serial(seconds):
         except Exception as e:
             print(e)
 
+        # Break after N seconds.
         if (dt.now()-t1).total_seconds() > seconds:
             print(v, t)
             break

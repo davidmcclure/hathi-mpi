@@ -1,7 +1,8 @@
 
 
-import atexit
+import click
 
+from datetime import datetime as dt
 from multiprocessing import Pool
 
 from hathi_mpi.corpus import Corpus
@@ -26,7 +27,9 @@ def count_tokens(path):
         print(e)
 
 
-def parallel():
+@click.command()
+@click.argument('seconds', default=3600)
+def parallel(seconds):
 
     """
     Parallelize across N cores.
@@ -37,9 +40,7 @@ def parallel():
     v = 0
     t = 0
 
-    @atexit.register
-    def log():
-        print(v, t)
+    t1 = dt.now()
 
     with Pool() as pool:
 
@@ -49,8 +50,14 @@ def parallel():
         )
 
         for count in jobs:
+
             if count: t += count
             v += 1
+
+            # Break after N seconds.
+            if (dt.now()-t1).total_seconds() > seconds:
+                print(v, t)
+                break
 
 
 if __name__ == '__main__':
