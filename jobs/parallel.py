@@ -35,8 +35,6 @@ def parallel(seconds):
     Parallelize across N cores.
     """
 
-    print(cpu_count())
-
     corpus = Corpus.from_env()
 
     v = 0
