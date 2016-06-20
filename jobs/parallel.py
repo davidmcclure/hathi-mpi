@@ -3,7 +3,7 @@
 import click
 
 from datetime import datetime as dt
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 
 from hathi_mpi.corpus import Corpus
 from hathi_mpi.volume import Volume
@@ -34,6 +34,8 @@ def parallel(seconds):
     """
     Parallelize across N cores.
     """
+
+    print(cpu_count())
 
     corpus = Corpus.from_env()
 
