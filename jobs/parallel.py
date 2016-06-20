@@ -29,8 +29,7 @@ def count_tokens(path):
 
 @click.command()
 @click.argument('seconds', default=3600)
-@click.option('--num_procs', default=8)
-def parallel(seconds, num_procs):
+def parallel(seconds):
 
     """
     Parallelize across N cores.
@@ -43,7 +42,7 @@ def parallel(seconds, num_procs):
 
     t1 = dt.now()
 
-    with Pool(num_procs) as pool:
+    with Pool() as pool:
 
         jobs = pool.imap_unordered(
             count_tokens,

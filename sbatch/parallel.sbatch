@@ -22,7 +22,7 @@
 #SBATCH --nodes=1
 #################
 #memory per node; default is 4000 MB per CPU
-#SBATCH --mem=64000
+#SBATCH --mem=4000
 #you could use --mem-per-cpu; they mean what we are calling cores
 #################
 #tasks to run per node; a "task" is usually mapped to a MPI processes.
@@ -36,5 +36,4 @@ module load python/3.3.2
 
 export PYTHONPATH=/home/dclure/hathi-mpi
 
-mpirun -x PYTHONPATH $PYTHONPATH/env/bin/python \
-    $PYTHONPATH/jobs/parallel.py 3600
+$PYTHONPATH/env/bin/python $PYTHONPATH/jobs/parallel.py 60
