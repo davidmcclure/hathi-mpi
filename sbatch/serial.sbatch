@@ -13,7 +13,7 @@
 #################
 #time you think you need; default is one hour
 #in minutes in this case, hh:mm:ss
-#SBATCH --time=01:05:00
+#SBATCH --time=00:05:00
 #################
 #quality of service; think of it as job priority
 #SBATCH --qos=normal
@@ -36,4 +36,4 @@ module load python/3.3.2
 export PYTHONPATH=/home/dclure/hathi-mpi
 
 mpirun -x PYTHONPATH $PYTHONPATH/env/bin/python \
-    $PYTHONPATH/jobs/serial.py
+    $PYTHONPATH/jobs/serial.py 60
