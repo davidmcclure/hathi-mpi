@@ -29,13 +29,12 @@ def count_tokens(path):
 
 @click.command()
 @click.argument('seconds', default=3600)
-def parallel(seconds):
+@click.option('--num_procs', default=8)
+def parallel(seconds, num_procs):
 
     """
     Parallelize across N cores.
     """
-
-    print(cpu_count())
 
     corpus = Corpus.from_env()
 
@@ -44,7 +43,7 @@ def parallel(seconds):
 
     t1 = dt.now()
 
-    with Pool() as pool:
+    with Pool(num_procs) as pool:
 
         jobs = pool.imap_unordered(
             count_tokens,
