@@ -2,6 +2,7 @@
 
 import numpy as np
 
+from datetime import datetime as dt
 from mpi4py import MPI
 
 from hathi_mpi.corpus import Corpus
@@ -13,6 +14,8 @@ def scatter():
     """
     Walk all paths, scatter to workers, rather sub-sums.
     """
+
+    t1 = dt.now()
 
     comm = MPI.COMM_WORLD
 
@@ -31,6 +34,11 @@ def scatter():
 
     else:
         segments = None
+
+    # Log walk duration.
+
+    t2 = dt.now()
+    print((t2-t1).total_seconds())
 
     # Count tokens in segment.
 
