@@ -104,7 +104,7 @@ def loops():
                         count += vol.token_count()
 
                     except Exception as e:
-                        print(e)
+                        print(e, path)
 
             # ----
             # EXIT
