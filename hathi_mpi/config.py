@@ -7,7 +7,6 @@ import yaml
 
 class Config:
 
-
     @classmethod
     def from_env(cls):
 
@@ -19,7 +18,6 @@ class Config:
             os.path.join(os.path.dirname(__file__), 'hathi-mpi.yml'),
             '~/.hathi-mpi.yml',
         ])
-
 
     def __init__(self, paths):
 
@@ -34,7 +32,6 @@ class Config:
 
         self.read()
 
-
     def __getitem__(self, key):
 
         """
@@ -48,7 +45,6 @@ class Config:
         """
 
         return self.config.get(key)
-
 
     def read(self):
 

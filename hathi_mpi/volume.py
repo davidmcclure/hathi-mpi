@@ -6,7 +6,6 @@ import bz2
 
 class Volume:
 
-
     @classmethod
     def from_bz2_path(cls, path):
 
@@ -21,7 +20,6 @@ class Volume:
 
         with bz2.open(path, 'rt') as fh:
             return cls(json.loads(fh.read()))
-
 
     @classmethod
     def from_json_path(cls, path):
@@ -38,7 +36,6 @@ class Volume:
         with open(path, 'r') as fh:
             return cls(json.loads(fh.read()))
 
-
     def __init__(self, data):
 
         """
@@ -50,7 +47,6 @@ class Volume:
 
         self.data = data
 
-
     def id(self):
 
         """
@@ -60,7 +56,6 @@ class Volume:
         """
 
         return self.data['id']
-
 
     def token_count(self):
 

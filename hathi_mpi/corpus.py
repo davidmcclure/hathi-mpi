@@ -11,7 +11,6 @@ from hathi_mpi.utils import grouper
 
 class Corpus:
 
-
     @classmethod
     def from_env(cls):
 
@@ -23,7 +22,6 @@ class Corpus:
 
         return cls(config['corpus_dir'])
 
-
     def __init__(self, path):
 
         """
@@ -34,7 +32,6 @@ class Corpus:
         """
 
         self.path = os.path.abspath(path)
-
 
     def paths(self, ext):
 
@@ -54,7 +51,6 @@ class Corpus:
                 if os.path.splitext(name)[1] == ext:
                     yield os.path.join(root, name)
 
-
     def path_groups(self, ext, n=1000):
 
         """
@@ -70,7 +66,6 @@ class Corpus:
         for group in grouper(self.paths(ext), n):
             yield group
 
-
     def bz2_volumes(self):
 
         """
@@ -81,7 +76,6 @@ class Corpus:
 
         for path in self.paths('.bz2'):
             yield Volume.from_bz2_path(path)
-
 
     def json_volumes(self):
 
