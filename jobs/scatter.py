@@ -30,7 +30,9 @@ def scatter():
 
         paths = list(corpus.paths('.bz2'))
 
-        segments = np.array_split(paths, size)
+        splits = np.array_split(paths, size)
+
+        segments = ['|'.join(s) for s in splits]
 
     else:
         segments = None
@@ -46,7 +48,7 @@ def scatter():
 
     count = 0
 
-    for path in segment:
+    for path in segment.split('|'):
 
         try:
 

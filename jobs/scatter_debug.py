@@ -17,29 +17,26 @@ def scatter():
     size = comm.Get_size()
     rank = comm.Get_rank()
 
-    vol_count = 4801237
-    scatter_count = math.floor(vol_count/size)*size
-
     # Split paths into segments.
 
     if rank == 0:
 
-        paths = (['data/pairtree_root/ar/k+/=1/39/60/=t/00/02/fm/9b/ark+=13960=t0002fm9b/bc.ark+=13960=t0002fm9b.basic.json.bz2'] * 4801237)[:scatter_count]
+        paths = ['/scratch/PI/malgeeh/htrc/hvd/pairtree_root/ar/k+/=1/39/60/=t/00/02/fm/9b/ark+=13960=t0002fm9b/bc.ark+=13960=t0002fm9b.basic.json.bz2'] * 4801237
 
-        segments = np.array(np.split(np.array(paths), size))
+        splits = np.array_split(paths, size)
+
+        segments = ['|'.join(s) for s in splits]
 
     else:
         segments = None
 
     # Count tokens in segment.
 
-    segment = np.empty(int(scatter_count/size), dtype='<U200')
-
-    comm.Scatter([segments, MPI.CHAR], [segment, MPI.CHAR])
+    segment = comm.scatter(segments, root=0)
 
     count = 0
 
-    for path in segment:
+    for path in segment.split('|'):
         count += 1
 
     # Merge segment sub-totals.
