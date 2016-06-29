@@ -1,6 +1,7 @@
 
 
 from mpi4py import MPI
+from datetime import datetime as dt
 
 from hathi_mpi import config
 from hathi_mpi.corpus import Corpus
@@ -26,6 +27,8 @@ def loops():
     status = MPI.Status()
 
     if rank == 0:
+
+        t1 = dt.now()
 
         corpus = Corpus.from_env()
 
@@ -70,6 +73,11 @@ def loops():
                 count += data
                 closed_ranks += 1
 
+        # Duration.
+        t2 = dt.now()
+        print((t2-t1).total_seconds())
+
+        # Total count.
         print(count)
 
     else:
