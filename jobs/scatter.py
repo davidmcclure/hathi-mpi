@@ -61,6 +61,12 @@ def scatter():
     counts = comm.gather(count, root=0)
 
     if rank == 0:
+
+        # Duration.
+        t3 = dt.now()
+        print((t3-t1).total_seconds())
+
+        # Total count.
         print(sum(counts))
 
 
