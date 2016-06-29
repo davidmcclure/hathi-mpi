@@ -1,6 +1,7 @@
 
 
 import numpy as np
+import pickle
 
 from datetime import datetime as dt
 from mpi4py import MPI
@@ -32,7 +33,7 @@ def scatter():
 
         splits = np.array_split(paths, size)
 
-        segments = ['|'.join(s) for s in splits]
+        segments = [pickle.dumps(s) for s in splits]
 
     else:
         segments = None
@@ -48,7 +49,7 @@ def scatter():
 
     count = 0
 
-    for path in segment.split('|'):
+    for path in pickle.loads(segment):
 
         try:
 
