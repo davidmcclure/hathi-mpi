@@ -49,7 +49,7 @@ def scatter():
 
     count = 0
 
-    for path in pickle.loads(segment):
+    for i, path in enumerate(pickle.loads(segment)):
 
         try:
 
@@ -58,6 +58,9 @@ def scatter():
 
         except Exception as e:
             print(e)
+
+        if i%1000 == 0:
+            print(rank, i)
 
     # Merge segment sub-totals.
 
