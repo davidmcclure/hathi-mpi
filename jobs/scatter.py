@@ -33,15 +33,14 @@ def scatter():
 
         splits = np.array_split(paths, size)
 
-        segments = [pickle.dumps(s) for s in splits]
+        segments = ['|'.join(s) for s in splits]
+
+        # Log walk duration.
+        t2 = dt.now()
+        print((t2-t1).total_seconds())
 
     else:
         segments = None
-
-    # Log walk duration.
-
-    t2 = dt.now()
-    print((t2-t1).total_seconds())
 
     # Count tokens in segment.
 
@@ -49,7 +48,7 @@ def scatter():
 
     count = 0
 
-    for i, path in enumerate(pickle.loads(segment)):
+    for i, path in enumerate(segment.split('|')):
 
         try:
 
