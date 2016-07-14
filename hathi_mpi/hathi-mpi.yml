@@ -1,5 +1,7 @@
 ---
 
-corpus_dir: /path/to/corpus
+corpus:
+  features: /path/to/features
+  manifest: /path/to/manifest
 
 group_size: 1000
