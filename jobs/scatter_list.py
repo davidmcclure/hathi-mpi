@@ -42,9 +42,13 @@ def scatter():
 
     segment = comm.scatter(segments, root=0)
 
+    # Parse the segment.
+    paths = json.loads(segment)
+    print(rank, len(paths))
+
     count = 0
 
-    for i, path in enumerate(json.loads(segment)):
+    for i, path in enumerate(paths):
 
         try:
 
