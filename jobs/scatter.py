@@ -1,7 +1,7 @@
 
 
 import numpy as np
-import pickle
+import json
 
 from datetime import datetime as dt
 from mpi4py import MPI
@@ -33,7 +33,7 @@ def scatter():
 
         splits = np.array_split(paths, size)
 
-        segments = ['|'.join(s) for s in splits]
+        segments = [json.dumps(list(s)) for s in splits]
 
         # Log walk duration.
         t2 = dt.now()
@@ -48,7 +48,7 @@ def scatter():
 
     count = 0
 
-    for i, path in enumerate(segment.split('|')):
+    for i, path in enumerate(json.loads(segment)):
 
         try:
 
