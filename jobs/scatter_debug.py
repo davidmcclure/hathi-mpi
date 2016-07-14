@@ -1,5 +1,6 @@
 
 
+import json
 import numpy as np
 import math
 
@@ -21,11 +22,11 @@ def scatter():
 
     if rank == 0:
 
-        paths = ['/scratch/PI/malgeeh/htrc/hvd/pairtree_root/ar/k+/=1/39/60/=t/00/02/fm/9b/ark+=13960=t0002fm9b/bc.ark+=13960=t0002fm9b.basic.json.bz2'] * 4801237
+        paths = ['/scratch/PI/malgeeh/htrc/hvd/pairtree_root/ar/k+/=1/39/60/=t/00/02/fm/9b/ark+=13960=t0002fm9b/bc.ark+=13960=t0002fm9b.basic.json.bz2'] * 5000000
 
         splits = np.array_split(paths, size)
 
-        segments = ['|'.join(s) for s in splits]
+        segments = [json.dumps(list(s)) for s in splits]
 
     else:
         segments = None
@@ -36,7 +37,7 @@ def scatter():
 
     count = 0
 
-    for path in segment.split('|'):
+    for path in json.loads(segment):
         count += 1
 
     # Merge segment sub-totals.
