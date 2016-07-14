@@ -36,4 +36,4 @@ module load python/3.3.2
 export PYTHONPATH=/home/dclure/hathi-mpi
 
 mpirun -x PYTHONPATH $PYTHONPATH/env/bin/python \
-    $PYTHONPATH/jobs/scatter.py
+    $PYTHONPATH/jobs/scatter_list.py
