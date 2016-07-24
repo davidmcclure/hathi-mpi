@@ -4,7 +4,7 @@ import click
 
 from datetime import datetime as dt
 
-from hathi_mpi.corpus import Manifest
+from hathi_mpi.manifest import Manifest
 from hathi_mpi.volume import Volume
 
 

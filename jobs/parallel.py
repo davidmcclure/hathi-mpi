@@ -5,7 +5,7 @@ import click
 from datetime import datetime as dt
 from multiprocessing import Pool, cpu_count
 
-from hathi_mpi.corpus import Manifest
+from hathi_mpi.manifest import Manifest
 from hathi_mpi.volume import Volume
 
 
