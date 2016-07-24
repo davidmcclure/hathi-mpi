@@ -5,7 +5,7 @@ import click
 from datetime import datetime as dt
 from multiprocessing import Pool, cpu_count
 
-from hathi_mpi.corpus import Corpus
+from hathi_mpi.corpus import Manifest
 from hathi_mpi.volume import Volume
 
 
@@ -35,7 +35,7 @@ def parallel(seconds):
     Parallelize across N cores.
     """
 
-    corpus = Corpus.from_env()
+    manifest = Manifest.from_env()
 
     v = 0
     t = 0
@@ -46,7 +46,7 @@ def parallel(seconds):
 
         jobs = pool.imap_unordered(
             count_tokens,
-            corpus.paths('.bz2'),
+            manifest.paths,
         )
 
         for count in jobs:

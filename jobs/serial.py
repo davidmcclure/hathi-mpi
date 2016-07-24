@@ -4,7 +4,7 @@ import click
 
 from datetime import datetime as dt
 
-from hathi_mpi.corpus import Corpus
+from hathi_mpi.corpus import Manifest
 from hathi_mpi.volume import Volume
 
 
@@ -16,14 +16,14 @@ def serial(seconds):
     Loop through volmes one-by-one.
     """
 
-    corpus = Corpus.from_env()
+    manifest = Manifest.from_env()
 
     v = 0
     t = 0
 
     t1 = dt.now()
 
-    for path in corpus.paths('.bz2'):
+    for path in manifest.paths:
 
         try:
 
