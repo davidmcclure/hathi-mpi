@@ -3,7 +3,7 @@
 #all commands that start with SBATCH contain commands that are just used by SLURM for scheduling
 #################
 #set a job name
-#SBATCH --job-name=serial
+#SBATCH --job-name=parallel
 #################
 #a file for job output, you can check job progress
 #SBATCH --output=parallel.out
